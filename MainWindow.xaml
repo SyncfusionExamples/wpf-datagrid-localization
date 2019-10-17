@@ -1,0 +1,44 @@
+﻿<Window x:Class="LocalizationDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:LocalizationDemo"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        Title="Localization Demo"
+        Icon="/LocalizationDemo;component/Resources/App.ico">
+    
+    <Window.DataContext>
+        <local:OrderInfoViewModel />
+    </Window.DataContext>
+    
+    <Grid>
+        <syncfusion:SfDataGrid Margin="10"
+                                AllowFiltering="True"
+                                AllowGrouping="True"
+                                AutoGenerateColumns="False"
+                                ColumnSizer="Star"
+                                GroupCaptionTextFormat="'{ColumnName} : {Key} - {ItemsCount} Artikel'"
+                                GroupDropAreaText="Ziehen Sie eine Spaltenüberschrift Sie hier, um nach dieser Spalte Gruppe"
+                                IsGroupDropAreaExpanded="True"
+                                ItemsSource="{Binding OrdersDetails}"
+                                NavigationMode="Row"
+                                ShowGroupDropArea="True">
+            <syncfusion:SfDataGrid.Columns>
+
+                <syncfusion:GridTextColumn HeaderText="Bestellen ID"
+                                            MappingName="OrderID"
+                                            TextAlignment="Right" />
+                <syncfusion:GridTextColumn HeaderText="Auftraggeber ID" MappingName="CustomerID" />
+                <syncfusion:GridTextColumn HeaderText="Mitarbeiter ID"
+                                            MappingName="EmployeeID"
+                                            TextAlignment="Right" />
+                <syncfusion:GridTextColumn HeaderText="Verschiffen Stadt" MappingName="ShipCity" />
+                <syncfusion:GridTextColumn HeaderText="Verschiffen Land" MappingName="ShipCountry" />
+                <syncfusion:GridTextColumn DisplayBinding="{Binding Path=Freight,
+                                                                    StringFormat='{}{0:C}'}"
+                                            HeaderText="Frachtkosten"
+                                            TextAlignment="Right" />
+
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+    </Grid>
+</Window>
